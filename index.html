@@ -10,7 +10,18 @@
     </head>
 
     <body>
-        <div id="container"></div>
+        <main id="container">
+            <div id="controls">
+                <input type="range" name="dimension" min="1" max="100" value="16">
+                <p>
+                    <span id="numRow">16</span> x <span id ="numColumn">16</span>
+                </p>
+                <button id="btn-border">No Grid</button>
+            </div>
+            <div id="border">
+                <div id="grid"></div>
+            </div>
+        </main>
 
     </body>
 </html>
