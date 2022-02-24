@@ -10,17 +10,43 @@
     </head>
 
     <body>
+        <header id="title">
+            <h1>Etch-a-Sketch</h1>
+        </header>
         <main id="container">
-            <div id="controls">
-                <input type="range" name="dimension" min="1" max="100" value="16">
-                <p>
-                    <span id="numRow">16</span> x <span id ="numColumn">16</span>
-                </p>
-                <button id="btn-border">No Grid</button>
-                <button id="btn-clear">Clear</button>
-            </div>
+            <section id="controls">
+                <div class="control">
+                    <label for="color">Color</label>
+                    <input type="color" name="color" value="#000000" />
+                </div>
+                <div class="control">
+                    <label for="erase">Erase</label>
+                    <input type="checkbox" name="erase" id="erase" />
+                </div>
+                <div class="control">
+                    <label for="rainbow">Rainbow</label>
+                    <input type="checkbox" name="rainbow" id="rainbow" />
+                </div>
+                <div class="control">
+                    <label for="grey-scale">Grey Shade</label>
+                    <input type="checkbox" name="grey-scale" id="grey-scale" />
+                </div>
+
+                <div class="control">
+                    <input type="range" name="dimension" min="1" max="100" value="16">
+                    <p>
+                        <span id="numRow">16</span> x <span id ="numColumn">16</span>
+                    </p>
+                </div>
+                <div class="control">
+                    <button id="btn-border">No Grid</button>
+                </div>
+                <div class="control">
+                    <button id="btn-clear">Clear</button>
+                </div>
+            </section>
             <div id="border">
-                <div id="grid"></div>
+                <section id="grid"></div>
             </div>
         </main>
 

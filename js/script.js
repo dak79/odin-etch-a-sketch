@@ -26,12 +26,50 @@ btnBorder.addEventListener('click', drawGrid);
 const btnClear = document.querySelector('#btn-clear');
 btnClear.addEventListener('click', clearGrid);
 
+// Disable other checkbox when one is selected
+const erase = document.querySelector('#erase');
+const rainbow = document.querySelector('#rainbow');
+const greyScale = document.querySelector('#grey-scale');
 
+erase.addEventListener('click', () => {
+    if (erase.checked) {
+        rainbow.disabled = true;
+        greyScale.disabled = true;
+    } else {
+        rainbow.disabled = false;
+        greyScale.disabled = false;
+    }
+});
+
+rainbow.addEventListener('click', () => {
+    if (rainbow.checked) {
+        erase.disabled = true;
+        greyScale.disabled = true;
+    } else {
+        erase.disabled = false;
+        greyScale.disabled = false;
+    }
+});
+
+greyScale.addEventListener('click', () => {
+    if (greyScale.checked) {
+        erase.disabled = true;
+        rainbow.disabled = true;
+    } else {
+        erase.disabled = false;
+        rainbow.disabled = false;
+    }
+});
+
+/**
+* This function is clearing the grid
+*/
 function clearGrid() {
     const squares = document.querySelectorAll('.squareGrid');
 
     squares.forEach(square => square.style.backgroundColor = 'white');
 }
+
 /**
 * This function is drawing grid border on the canavas
 */
@@ -66,7 +104,7 @@ function createGrid(size) {
     // Compute a square dimention
     let dimension = 500 / size;
 
-    // Drow a grid
+    // Draw a grid
     for (let i = 0; i < size; i++) {
         const divRow = document.createElement('div');
         divRow.classList.add('row');
@@ -77,6 +115,8 @@ function createGrid(size) {
 
             square.addEventListener('mousedown', draw);
             square.addEventListener('mouseover', draw);
+            square.style.backgroundColor = "rgb(255, 255, 255)";
+            //rgb(9, 9, 9);
 
             // Define dimention of each square
             square.style.width = `${dimension}px`;
@@ -90,7 +130,34 @@ function draw(e) {
     if (e.type === 'mouseover' && !hold) {
         return;
     } else {
-        e.target.style.backgroundColor = 'black';
+        const erase = document.querySelector('#erase');
+        const rainbow = document.querySelector('#rainbow');
+        const greyScale = document.querySelector('#grey-scale');
+        if (erase.checked) {
+            e.target.style.backgroundColor = 'white';
+        } else if (rainbow.checked) {
+            e.target.style.backgroundColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
+        } else if (greyScale.checked) {
+            let color = e.target.style.backgroundColor;
+            let r, g, b = 0;
+            if (color.length === 18) {
+                r = color.substring(4, 7);
+                g = color.substring(9, 12);
+                b = color.substring(14, 17);
+            } else if (color.length === 15) {
+                r = color.substring(4, 6);
+                g = color.substring(8, 10);
+                b = color.substring(12, 14);
+            } else {
+                r = color.substring(4, 5);
+                g = color.substring(7, 8);
+                b = color.substring(10,11);
+            }
+            e.target.style.backgroundColor = `rgb(${r - 24}, ${g - 24}, ${b - 24})`;
+        } else {
+            const color = document.querySelector('input[type=color]');
+            e.target.style.backgroundColor = color.value;
+        }
     }
 
 }

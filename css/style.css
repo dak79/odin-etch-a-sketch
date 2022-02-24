@@ -5,13 +5,20 @@
 
 }
 
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+#title {
+    text-align: center;
+    padding: 2em;
+}
+
 #container {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    height: 100vh;
-
 }
 
 #grid {
@@ -27,4 +34,14 @@
 
 .grid-border {
     border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+#controls {
+    display: flex;
+    flex-direction: column;
+}
+
+.control {
+    padding: 1em;
+    margin: 0.2em;
 }
