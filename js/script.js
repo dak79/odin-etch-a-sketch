@@ -2,6 +2,14 @@ const range = document.querySelector('input[type=range]');
 const numRow = document.querySelector('#numRow');
 const numColumn = document.querySelector('#numColumn');
 
+// Detect mouse button: hold for drawing
+const grid = document.querySelector('#grid');
+let hold = false;
+
+grid.addEventListener('mousedown', () => hold = true);
+grid.addEventListener('mouseup', () => hold = false);
+
+
 
 // Draw grid dynamic with dynamic dimension
 range.addEventListener('input', () => {
@@ -14,6 +22,16 @@ range.addEventListener('input', () => {
 const btnBorder = document.querySelector('#btn-border');
 btnBorder.addEventListener('click', drawGrid);
 
+// Clear Grid button
+const btnClear = document.querySelector('#btn-clear');
+btnClear.addEventListener('click', clearGrid);
+
+
+function clearGrid() {
+    const squares = document.querySelectorAll('.squareGrid');
+
+    squares.forEach(square => square.style.backgroundColor = 'white');
+}
 /**
 * This function is drawing grid border on the canavas
 */
@@ -45,7 +63,7 @@ function createGrid(size) {
     const grid = document.querySelector('#grid');
     grid.innerHTML = '';
 
-    // Compute square dimention
+    // Compute a square dimention
     let dimension = 500 / size;
 
     // Drow a grid
@@ -57,12 +75,24 @@ function createGrid(size) {
             const square = document.createElement('div');
             square.classList.add('squareGrid', 'grid-border');
 
+            square.addEventListener('mousedown', draw);
+            square.addEventListener('mouseover', draw);
+
             // Define dimention of each square
             square.style.width = `${dimension}px`;
             square.style.height = `${dimension}px`;
             divRow.appendChild(square);
         }
     }
+}
+
+function draw(e) {
+    if (e.type === 'mouseover' && !hold) {
+        return;
+    } else {
+        e.target.style.backgroundColor = 'black';
+    }
+
 }
 
 // Create the first grid
