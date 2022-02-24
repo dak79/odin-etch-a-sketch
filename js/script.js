@@ -9,8 +9,6 @@ let hold = false;
 grid.addEventListener('mousedown', () => hold = true);
 grid.addEventListener('mouseup', () => hold = false);
 
-
-
 // Draw grid dynamic with dynamic dimension
 range.addEventListener('input', () => {
     numRow.textContent = range.value;
@@ -126,40 +124,58 @@ function createGrid(size) {
     }
 }
 
+/**
+* @param {event} e - The event object fired from listener
+* This function create a pen that drow in four mode.
+* 1. Color: Pen draws in the color of choice. Default black.
+* 2. Erase: Pen become an eraser.
+* 3. Rinbow: Pen draws in a random color.
+* 4. Grey Shade: Pen increments the hue of gray from white to black.
+*/
 function draw(e) {
+
+    // Listen for hold button
     if (e.type === 'mouseover' && !hold) {
         return;
     } else {
+
         const erase = document.querySelector('#erase');
         const rainbow = document.querySelector('#rainbow');
         const greyScale = document.querySelector('#grey-scale');
+
+        // Eraser
         if (erase.checked) {
             e.target.style.backgroundColor = 'white';
+
+        // Random color
         } else if (rainbow.checked) {
             e.target.style.backgroundColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
+
+        // Grey shade darker
         } else if (greyScale.checked) {
-            let color = e.target.style.backgroundColor;
+            let shade = e.target.style.backgroundColor;
             let r, g, b = 0;
-            if (color.length === 18) {
-                r = color.substring(4, 7);
-                g = color.substring(9, 12);
-                b = color.substring(14, 17);
-            } else if (color.length === 15) {
-                r = color.substring(4, 6);
-                g = color.substring(8, 10);
-                b = color.substring(12, 14);
+            if (shade.length === 18) {
+                r = shade.substring(4, 7);
+                g = shade.substring(9, 12);
+                b = shade.substring(14, 17);
+            } else if (shade.length === 15) {
+                r = shade.substring(4, 6);
+                g = shade.substring(8, 10);
+                b = shade.substring(12, 14);
             } else {
-                r = color.substring(4, 5);
-                g = color.substring(7, 8);
-                b = color.substring(10,11);
+                r = shade.substring(4, 5);
+                g = shade.substring(7, 8);
+                b = shade.substring(10,11);
             }
             e.target.style.backgroundColor = `rgb(${r - 24}, ${g - 24}, ${b - 24})`;
+
+        // Color
         } else {
             const color = document.querySelector('input[type=color]');
             e.target.style.backgroundColor = color.value;
         }
     }
-
 }
 
 // Create the first grid
