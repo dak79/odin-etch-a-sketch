@@ -64,7 +64,6 @@ greyScale.addEventListener('click', () => {
 */
 function clearGrid() {
     const squares = document.querySelectorAll('.squareGrid');
-
     squares.forEach(square => square.style.backgroundColor = 'white');
 }
 
@@ -114,7 +113,6 @@ function createGrid(size) {
             square.addEventListener('mousedown', draw);
             square.addEventListener('mouseover', draw);
             square.style.backgroundColor = "rgb(255, 255, 255)";
-            //rgb(9, 9, 9);
 
             // Define dimention of each square
             square.style.width = `${dimension}px`;
