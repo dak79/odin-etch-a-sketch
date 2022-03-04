@@ -6,6 +6,9 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Etch-a-Sketch</title>
         <link rel="stylesheet" href="css/style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&display=swap" rel="stylesheet">
         <script src="js/script.js" charset="utf-8" defer></script>
     </head>
 
@@ -16,18 +19,17 @@
         <main id="container">
             <section id="controls">
                 <div class="control">
-                    <label for="color">Color</label>
-                    <input type="color" name="color" value="#000000" />
+                    <input type="color" id="color-input" name="color" value="#000000" />
                 </div>
-                <div class="control">
+                <div class="control check">
                     <label for="erase">Erase</label>
                     <input type="checkbox" name="erase" id="erase" />
                 </div>
-                <div class="control">
+                <div class="control check">
                     <label for="rainbow">Rainbow</label>
                     <input type="checkbox" name="rainbow" id="rainbow" />
                 </div>
-                <div class="control">
+                <div class="control check">
                     <label for="grey-scale">Grey Shade</label>
                     <input type="checkbox" name="grey-scale" id="grey-scale" />
                 </div>
@@ -39,10 +41,10 @@
                     </p>
                 </div>
                 <div class="control">
-                    <button id="btn-border">No Grid</button>
+                    <button id="btn-border" class="btn">No Grid</button>
                 </div>
                 <div class="control">
-                    <button id="btn-clear">Clear</button>
+                    <button id="btn-clear" class="btn">Clear</button>
                 </div>
             </section>
             <div id="border">
