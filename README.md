@@ -7,7 +7,7 @@
 This project is part of [The Odin Project - Foundations Path](https://www.theodinproject.com/lessons/foundations-etch-a-sketch).
 The goal of this project is to learn about DOM manipulation and a proper use of Google Search and net resources.
 
-## Tecnologies
+## Technologies
 * HTML 
 * CSS
 * JavaScript
